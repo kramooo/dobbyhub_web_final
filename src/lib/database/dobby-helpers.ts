@@ -131,9 +131,12 @@ export class DobbyHelpersDatabase {
         return []
       }
 
+      const { user } = authResult
+
       const { data, error } = await this.supabase
         .from('dobby_helper_session_summaries')
         .select('*')
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Filter by user_id
         .eq('is_archived', false)
         .order('updated_at', { ascending: false })
 
@@ -159,9 +162,12 @@ export class DobbyHelpersDatabase {
         return []
       }
 
+      const { user } = authResult
+
       const { data, error } = await this.supabase
         .from('dobby_helper_session_summaries')
         .select('*')
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Filter by user_id first
         .eq('helper_type_name', helperTypeName)
         .eq('is_archived', false)
         .order('updated_at', { ascending: false })
@@ -181,11 +187,19 @@ export class DobbyHelpersDatabase {
   // Get a specific helper session with all messages
   async getHelperSession(sessionId: string): Promise<DobbyHelperSession | null> {
     try {
-      // Get session details
+      const authResult = await this.ensureAuthenticated()
+      if (!authResult) {
+        return null
+      }
+
+      const { user } = authResult
+
+      // Get session details - ensure it belongs to the current user
       const { data: session, error: sessionError } = await this.supabase
         .from('dobby_helper_sessions')
         .select('*')
         .eq('id', sessionId)
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Ensure user owns this session
         .single()
 
       if (sessionError) {
@@ -193,7 +207,7 @@ export class DobbyHelpersDatabase {
         return null
       }
 
-      // Get all messages for this session
+      // Get all messages for this session (RLS will handle user filtering via session ownership)
       const { data: messages, error: msgError } = await this.supabase
         .from('dobby_helper_messages')
         .select('*')
@@ -339,9 +353,12 @@ export class DobbyHelpersDatabase {
         return []
       }
 
+      const { user } = authResult
+
       const { data, error } = await this.supabase
         .from('dobby_helper_session_summaries')
         .select('*')
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Filter by user_id first
         .or(`title.ilike.%${query}%,last_message.ilike.%${query}%,helper_display_name.ilike.%${query}%`)
         .eq('is_archived', false)
         .order('updated_at', { ascending: false })

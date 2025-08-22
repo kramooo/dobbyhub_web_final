@@ -141,9 +141,12 @@ export class ChatDatabase {
         return []
       }
 
+      const { user } = authResult
+
       const { data, error } = await this.supabase
         .from('conversation_summaries')
         .select('*')
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Filter by user_id
         .eq('is_archived', false)
         .order('updated_at', { ascending: false })
 
@@ -164,11 +167,19 @@ export class ChatDatabase {
   // Get a specific conversation with all messages
   async getConversation(conversationId: string): Promise<Conversation | null> {
     try {
-      // Get conversation details
+      const authResult = await this.ensureAuthenticated()
+      if (!authResult) {
+        return null
+      }
+
+      const { user } = authResult
+
+      // Get conversation details - ensure it belongs to the current user
       const { data: conversation, error: convError } = await this.supabase
         .from('conversations')
         .select('*')
         .eq('id', conversationId)
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Ensure user owns this conversation
         .single()
 
       if (convError) {
@@ -176,7 +187,7 @@ export class ChatDatabase {
         return null
       }
 
-      // Get all messages for this conversation
+      // Get all messages for this conversation (RLS will handle user filtering via conversation ownership)
       const { data: messages, error: msgError } = await this.supabase
         .from('messages')
         .select('*')
@@ -325,9 +336,12 @@ export class ChatDatabase {
         return []
       }
 
+      const { user } = authResult
+
       const { data, error } = await this.supabase
         .from('conversation_summaries')
         .select('*')
+        .eq('user_id', user.id)  // 🔒 SECURITY FIX: Filter by user_id first
         .or(`title.ilike.%${query}%,last_message.ilike.%${query}%`)
         .eq('is_archived', false)
         .order('updated_at', { ascending: false })
