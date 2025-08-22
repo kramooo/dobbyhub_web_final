@@ -19,56 +19,14 @@ An AI-powered Web3 assistant platform built with Next.js, TypeScript, Tailwind C
 
 - Node.js 18+ 
 - npm, yarn, or pnpm
-- Supabase account (for database and authentication)
 
 ### Installation
 
-1. **Clone the repository:**
-```bash
-git clone https://github.com/kramooo/dobbyhub_web_final.git
-cd dobbyhub
-```
-
-2. **Install dependencies:**
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. **Set up environment variables:**
-Create a `.env.local` file in the root directory and add your Supabase credentials:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-```
-
-4. **Set up the database:**
-- Follow the instructions in `DATABASE_SETUP.md`
-- Run the SQL scripts in the `database/` folder in your Supabase SQL editor
-- Follow `DOBBY_HELPERS_SETUP.md` to set up the AI helpers
-
-5. **Run the development server:**
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-6. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
-
-### Environment Setup
-
-The project requires several setup files to be configured:
-
-- **Database Setup**: See `DATABASE_SETUP.md` and `DATABASE_CHAT_SETUP.md`
-- **Supabase Setup**: See `SUPABASE_SETUP.md`
-- **Dobby Helpers**: See `DOBBY_HELPERS_SETUP.md`
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Set up your environment variables
+4. Run the development server with `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Project Structure
 
@@ -96,7 +54,7 @@ src/
 - **Animations**: Framer Motion
 - **AI Integration**: Custom AI helper system
 
-## Development
+## Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
