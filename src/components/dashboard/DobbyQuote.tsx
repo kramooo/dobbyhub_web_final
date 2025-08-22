@@ -26,7 +26,7 @@ export function DobbyQuote() {
         <div className="flex flex-col items-center space-y-3">
           {/* Title */}
           <h3 className="text-base font-semibold text-gray-800 text-center">
-            Dobby's Quote of the Day
+            Dobby&apos;s Quote of the Day
           </h3>
           
           {/* Speech Bubble */}

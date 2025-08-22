@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-gray-900 font-mono text-lg font-semibold">DobbyHub</span>
             </div>
             <p className="text-gray-900 text-sm">
-              World's First Loyal and Most Free LLMs. Chat with Dobby and explore community-built apps.
+              World&apos;s First Loyal and Most Free LLMs. Chat with Dobby and explore community-built apps.
             </p>
           </div>
 

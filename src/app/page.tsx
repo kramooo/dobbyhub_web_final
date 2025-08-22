@@ -24,7 +24,7 @@ export default function Home() {
                 Meet Dobby<br />
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-              World's First Loyal and Most Free LLMs
+              World&apos;s First Loyal and Most Free LLMs
               </p>
               <div className="flex justify-center md:justify-start space-x-4">
               <Link href="/auth">

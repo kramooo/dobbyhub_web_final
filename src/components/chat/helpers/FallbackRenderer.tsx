@@ -95,7 +95,7 @@ export function RenderingErrorFallback({
   responseData, 
   error 
 }: RenderingErrorFallbackProps) {
-  const errorMessage = error.message || 'Unknown error'
+  const errorMessage = error.message || "Unknown error"
   
   return (
     <div className="space-y-4">
@@ -136,7 +136,7 @@ export function RenderingErrorFallback({
       
       <div className="text-xs text-gray-500 p-2 bg-blue-50 rounded border border-blue-200">
         💡 <strong>Tip:</strong> This error occurred while trying to display the {helperType} response. 
-        The data structure may not match what's expected. Try asking the helper to regenerate the response.
+        The data structure may not match what&apos;s expected. Try asking the helper to regenerate the response.
       </div>
     </div>
   )

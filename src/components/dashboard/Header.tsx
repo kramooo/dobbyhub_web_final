@@ -60,7 +60,7 @@ export function Header({ user }: HeaderProps) {
             <div>
               <h1 className="text-2xl font-bold">Learn, Chat and Play with Dobby!</h1>
               <p className="text-sm opacity-90">
-                Know more about Sentient's mission by interacting with Dobby, the world's first loyal and free LLM.
+                Know more about Sentient&apos;s mission by interacting with Dobby, the world&apos;s first loyal and free LLM.
               </p>
             </div>
           </div>

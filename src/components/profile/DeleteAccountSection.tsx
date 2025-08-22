@@ -20,7 +20,7 @@ export function DeleteAccountSection() {
 
   const handleDeleteAccount = async () => {
     if (!user || confirmationText !== 'DELETE') {
-      setError('Please type "DELETE" to confirm')
+      setError('Please type &quot;DELETE&quot; to confirm')
       return
     }
 
@@ -112,7 +112,7 @@ export function DeleteAccountSection() {
 
           <div className="mb-4">
             <label htmlFor="confirmation" className="block text-sm font-medium text-gray-700 mb-2">
-              Type "DELETE" to confirm:
+              Type &quot;DELETE&quot; to confirm:
             </label>
             <Input
               id="confirmation"
