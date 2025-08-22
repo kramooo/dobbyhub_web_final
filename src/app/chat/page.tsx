@@ -328,7 +328,7 @@ export default function ChatPage() {
       console.error('Error getting AI response:', error)
       // Fallback to a friendly error message
       return {
-        message: "I apologize, but I'm having trouble processing your request right now. Please try again in a moment. If the problem persists, please check that the Fireworks API key is properly configured."
+        message: "I apologize, but I&apos;m having trouble processing your request right now. Please try again in a moment. If the problem persists, please check that the Fireworks API key is properly configured."
       }
     }
   }
@@ -601,7 +601,7 @@ export default function ChatPage() {
                   How can Dobby help you today?
                 </h2>
                 <p className="text-gray-600 mb-8 max-w-md">
-                  Start a conversation by typing a message below. I'm here to assist you with any questions or tasks you have.
+                  Start a conversation by typing a message below. I&apos;m here to assist you with any questions or tasks you have.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl w-full">
                   {[

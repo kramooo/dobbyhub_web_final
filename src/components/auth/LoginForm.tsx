@@ -67,7 +67,7 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Check your email</h2>
           <p className="text-gray-600 mb-6">
-            We've sent a password reset link to <strong>{email}</strong>
+            We&apos;ve sent a password reset link to <strong>{email}</strong>
           </p>
           <Button onClick={() => setResetPasswordSuccess(false)} variant="outline" className="w-full bg-orange-600 hover:bg-orange-500">
             Back to sign in

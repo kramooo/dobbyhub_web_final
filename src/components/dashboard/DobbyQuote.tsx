@@ -32,7 +32,7 @@ export function DobbyQuote() {
           {/* Speech Bubble */}
           <div className="relative bg-white p-3 rounded-xl shadow-md border border-blue-200 max-w-full">
             <p className="text-xs text-gray-700 text-center font-medium leading-relaxed">
-              "{todayQuote}"
+              &quot;{todayQuote}&quot;
             </p>
             {/* Speech bubble tail */}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
