@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { SignUpForm } from '@/components/auth/SignUpForm'
 import { ResetPasswordForm } from '@/components/auth/ResetPasswordForm'
 
-export default function AuthPage() {
+// Component that uses useSearchParams - needs to be wrapped in Suspense
+function AuthContent() {
   const [isLogin, setIsLogin] = useState(true)
   const { user, loading } = useAuth()
   const router = useRouter()
@@ -99,5 +100,28 @@ export default function AuthPage() {
         )}
       </div>
     </div>
+  )
+}
+
+// Loading component for Suspense fallback
+function AuthLoading() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Main component that wraps AuthContent in Suspense
+export default function AuthPage() {
+  return (
+    <Suspense fallback={<AuthLoading />}>
+      <AuthContent />
+    </Suspense>
   )
 }

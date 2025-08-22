@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, Suspense } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAuth } from '@/contexts/AuthContext'
@@ -24,7 +24,8 @@ interface Message {
   helper_type?: string // Which helper was used
 }
 
-export default function ChatPage() {
+// Component that uses useSearchParams - needs to be wrapped in Suspense
+function ChatContent() {
   useRequireAuth()
   const { user, signOut, loading } = useAuth()
   const searchParams = useSearchParams()
@@ -902,5 +903,26 @@ export default function ChatPage() {
         </div>
       )}
     </div>
+  )
+}
+
+// Loading component for Suspense fallback
+function ChatLoading() {
+  return (
+    <div className="flex h-[calc(100vh-var(--header-height))] bg-background items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">Setting up your chat...</p>
+      </div>
+    </div>
+  )
+}
+
+// Main component that wraps ChatContent in Suspense
+export default function ChatPage() {
+  return (
+    <Suspense fallback={<ChatLoading />}>
+      <ChatContent />
+    </Suspense>
   )
 }
