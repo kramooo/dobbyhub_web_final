@@ -51,5 +51,5 @@ DOBBY_HELPERS_SETUP.md
 SUPABASE_SETUP.md
 HELPER_HISTORY_FIX.md
 
-# Database files and scripts
-database/
+# Database files and scripts (only root database directory)
+/database/
